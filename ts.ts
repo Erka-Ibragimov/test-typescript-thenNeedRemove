@@ -206,3 +206,123 @@
 // type U1 = unknown | null;  // unknown
 // type I1 = unknown & string;  // string
 ////////////////////////////////////////////
+// never
+// function generateError(message: string): never {
+//   throw new Error(message);
+// }
+// function dumpError(): never {
+//   while (true) {}
+// }
+// /////////////////////////////////////////////////
+// type paymentAction = "refund" | "checkout" | "reject";
+// function proccessAction(action: paymentAction) {
+//   switch (action) {
+//     case "refund":
+//       //...
+//       break;
+//     case "checkout":
+//       //...
+//       break;
+//     case "reject":
+//       //...
+//       break;
+//     default: // проверка что никогда не зайдем в этот кейс
+//       const _: never = action;
+//       throw new Error("Нет такого action");
+//   }
+// }
+////////////////////////////////////////////////
+// function generateError(message: string): never {
+//   throw new Error(message);
+// }
+// function isString(x: string | number): boolean {
+//   if (typeof x === "number") {
+//     return false;
+//   } else if (typeof x === "string") {
+//     return true;
+//   }
+//   generateError("Не может быть!");
+// }
+/////////////////////////////////////////////////////////
+// const n: null = null; /// null это осознанно делаем а undefined нет
+// // const n1: string = null;
+// // const n2: number = null;
+// // const n3: undefined = null;
+// interface User {
+//   name: string;
+// }
+// function getUser(): User | null {
+//   if (Math.random() > 0.5) {
+//     return null;
+//   } else {
+//     return { name: "Erkin" };
+//   }
+// }
+// const user = getUser();
+// if (user) {
+//   const n55 = user.name;
+// }
+//////////////////////////////////////////////////////
+// let a = 5;
+// let b: string = a.toString();
+// let e: string = new String(a).valueOf();
+// let f: boolean = new Boolean(a).valueOf();
+
+// let c = "5.5";
+// let d: number = parseFloat(c);
+/////////////////////////////////////
+// interface User {
+//   // преобразование обьектов
+//   name: string;
+//   email: string;
+//   login: string;
+// }
+// const user: User = {
+//   name: "Вася",
+//   email: "vasay",
+//   login: "Vasyyyy",
+// };
+// interface Admin {
+//   name: string;
+//   role: number;
+// }
+// const admin: Admin = {
+//   ...user,
+//   role: 1,
+// };
+// function userToAdmin(user: User): Admin {
+//   return {
+//     name: user.name,
+//     role: 1,
+//   };
+// }
+// /////////////////////////////////////////////
+// // type guards --------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// function logId(id: string | number) {
+//   if (isString(id)) {
+//     console.log(id);
+//   } else if (typeof id === "number") {
+//     console.log(id);
+//   }
+//   id;
+// }
+// function isString(x: string | number): x is string {
+//   /// хототь и возврашает string но на самом дела возварашает true или false
+//   /// Promise не работает
+//   return typeof x == "string";
+// }
+// function isAdmin(user: User | Admin): user is Admin {
+//   /// точно так же как и со string
+//   return "role" in user;
+// }
+// function isAdminAlternative(user: User | Admin): user is Admin {
+//   return (user as Admin).role !== undefined;
+// }
+// function setRoleZero(user: User | Admin) {
+//   if (isAdmin(user)) {
+//     user.role = 0;
+//   } else {
+//     throw new Error("Пользователь не админ");
+//   }
+// }
+///////////////////////////////////////////////////////////////////////

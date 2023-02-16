@@ -35,3 +35,51 @@
 //   const data: Promise<Response[]> = await res.json();
 //   return data;
 // };
+// /////////////////////////////////////////////////////////////////////////////////
+// interface Req {
+//   sum: number;
+//   from: number;
+//   to: number;
+// }
+// enum ResponseStatus {
+//   SUCCESS = "success",
+//   FAILED = "failed",
+// }
+// interface DataBaseId extends Req {
+//   databaseId: number;
+// }
+// interface ErrorMessage {
+//   errorMessage: string;
+//   errorCode: number;
+// }
+// interface Success {
+//   status: ResponseStatus.SUCCESS;
+//   data: DataBaseId;
+// }
+// interface Failed {
+//   status: ResponseStatus.FAILED;
+//   data: ErrorMessage;
+// }
+// type FirstOrSecond = Success | Failed;
+// const isSuccess = (res: FirstOrSecond): res is Success => {
+//   //   return typeof (res as Success).data.databaseId !== undefined;
+//   //   return "databaseId" in res.data;
+//   if (res.status == ResponseStatus.SUCCESS) {
+//     return true;
+//   }
+//   return false;
+// };
+// const isFailed = (res: FirstOrSecond): res is Failed => {
+//   //   return "errorMessage" in res.data;
+//   if (res.status == ResponseStatus.FAILED) {
+//     return true;
+//   }
+//   return false;
+// };
+// type f = (res: FirstOrSecond) => number;
+// const fn: f = (res: FirstOrSecond): number => {
+//   if (isSuccess(res)) {
+//     return 1;
+//   }
+//   return 0;
+// };

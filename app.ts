@@ -89,3 +89,40 @@
 //   }
 //   return 0;
 // };
+///////////////////////////////////////////////////
+// abstract class Logger {
+//   abstract log(message: string): void;
+//   printDate() {
+//     console.log(new Date());
+//   }
+// }
+// class PrintLog extends Logger {
+//   log(message: string): void {
+//     console.log(message);
+//   }
+//   logWithDate() {
+//     this.printDate();
+//     this.log("Here I am Erkin");
+//   }
+// }
+// const log = new PrintLog();
+// log.logWithDate();
+//////////////////////////////////////////
+abstract class Logger {
+  // как работают абстрактные классы
+  abstract log(message: string): void;
+  printDate(date: Date): void {
+    this.log(date.toString());
+  }
+}
+class PrintLogger extends Logger {
+  log(message: string): void {
+    console.log(message);
+  }
+  logWithDate(message: string): void {
+    this.printDate(new Date());
+    this.log(message);
+  }
+}
+const log = new PrintLogger();
+log.logWithDate("sf");

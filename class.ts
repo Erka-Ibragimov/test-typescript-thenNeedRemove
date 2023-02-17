@@ -349,3 +349,94 @@
 // console.log(cart.countSum());
 // console.log(cart.checkout());
 // console.log(cart);
+//////////////////////////////////////////////////////
+// static
+// class UserService {
+//   public static db: any; // можно использовать не создовая экземпляра
+//   public static async getId(id: number) {
+//     return UserService.db;
+//   }
+//   public create() {
+//     UserService.db;
+//   }
+//   static {
+//     // не может быть async
+//     UserService.db = "asd"; // сразу выполниться этот статичный блок
+//   }
+// }
+// UserService.db;
+// const inst = new UserService().create();
+///////////////////////////////////////////////////////////////////////////////////
+// this
+// class Payment {
+//   private date: Date = new Date();
+//   getDate(this: Payment, num: number) {
+//     return this.date;
+//   }
+//   // для стрелочных функции не нужен биндинг он не потеряет свои контекст
+//   getDateArrow = () => {
+//     // стрелочная функция не будет в прототипе класса Payment
+//     return this.date;
+//   };
+// }
+// const p = new Payment();
+// const user = {
+//   id: 1,
+//   paymentDate: p.getDate.bind(p),
+//   paymentDateArrow: p.getDateArrow,
+// };
+// console.log(p.getDate(1));
+// console.log(user.paymentDate(1));
+// console.log(user.paymentDateArrow());
+
+// class PaymentPersistence extends Payment {
+//   save(num: number) {
+//     return super.getDateArrow(); // если через super обратиться то получим ошибку изза того что нету в прототипе
+//     // return this.getDateArrow(); // если обратимся через this то работать будет
+//   }
+// }
+// const paymentPersistence = new PaymentPersistence();
+// console.log(paymentPersistence.save(1));
+////////////////////////////////////////////////////////////////
+// class UserBuilder {
+//   name: string;
+//   setName(name: string): this {
+//     this.name = name;
+//     return this;
+//   }
+//   isAdmin(): this is AdminBuilder {
+//     return this instanceof AdminBuilder;
+//   }
+// }
+// class AdminBuilder extends UserBuilder {
+//   // если пустой AdminBuilder то мы не сможем отличить в run time, изза этого AdminBuiler не должен быть пустым
+//   roles: string[];
+// }
+// const userBuilder = new UserBuilder().setName("Erkin");
+// const adminBuilder = new AdminBuilder().setName("Erkin");
+
+// let user: UserBuilder | AdminBuilder = new AdminBuilder();
+// if (user.isAdmin()) {
+//   console.log(user);
+// } else {
+//   console.log(user);
+// }
+///////////////////////////////////////////////////////////////////////////
+// // abstract
+// abstract class Controller {
+//   abstract handle(req: any): void;
+
+//   handleWithLog(req: any) {
+//     console.log("start");
+//     this.handle(req);
+//     console.log("end");
+//   }
+// }
+// // new Controller(); -> нельзя наследовать
+// class UserController extends Controller {
+//   handle(req: any): void {
+//     console.log(req);
+//   }
+// }
+// const user = new UserController();
+// user.handleWithLog("Request");

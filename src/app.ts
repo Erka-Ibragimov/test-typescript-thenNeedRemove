@@ -108,21 +108,81 @@
 // const log = new PrintLog();
 // log.logWithDate();
 //////////////////////////////////////////
-abstract class Logger {
-  // как работают абстрактные классы
-  abstract log(message: string): void;
-  printDate(date: Date): void {
-    this.log(date.toString());
-  }
-}
-class PrintLogger extends Logger {
-  log(message: string): void {
-    console.log(message);
-  }
-  logWithDate(message: string): void {
-    this.printDate(new Date());
-    this.log(message);
-  }
-}
-const log = new PrintLogger();
-log.logWithDate("sf");
+// abstract class Logger {
+//   // как работают абстрактные классы
+//   abstract log(message: string): void;
+//   printDate(date: Date): void {
+//     this.log(date.toString());
+//   }
+// }
+// class PrintLogger extends Logger {
+//   log(message: string): void {
+//     console.log(message);
+//   }
+//   logWithDate(message: string): void {
+//     this.printDate(new Date());
+//     this.log(message);
+//   }
+// }
+// const log = new PrintLogger();
+// log.logWithDate("sf");
+/////////////////////////////////////////////
+// genetic
+// const transferToString = <T>(thing: T): string | undefined => {
+//   if (typeof thing === "string") {
+//     return thing;
+//   } else if (typeof thing === "number") {
+//     return thing + "";
+//   } else if (typeof thing === "boolean") {
+//     return thing + "";
+//   }
+//   return undefined;
+// };
+// transferToString<string>("sdf");
+// transferToString(4);
+//////////////////////////////////////////////////////////
+const data = [
+  { id: 2, name: "Петя" },
+  { id: 1, name: "Вася" },
+  { id: 3, name: "Надя" },
+];
+// interface ISort {
+//   id: number;
+// }
+// function sortById<T extends ISort>(
+//   arr: Array<T | undefined>
+// ): Array<T | undefined> {
+//   for (let i = 0; i < arr.length; i++) {
+//     let index = i;
+//     for (let k = i + 1; k < arr.length; k++) {
+//       if (arr[index]!.id < arr[k]!.id) {
+//         index = k;
+//       }
+//     }
+//     let temp = arr[i];
+//     arr[i] = arr[index];
+//     arr[index] = temp;
+//   }
+//   return arr;
+// }
+// const a = sortById(data);
+//////////////////////////////////////////////////
+// interface ISort {
+//   id: number;
+// }
+// function sortById<T extends ISort>(
+//   arr: T[],
+//   typesSort: "asc" | "desc" = "asc"
+// ): T[] {
+//   return arr.sort((a, b) => {
+//     switch (typesSort) {
+//       case "asc":
+//         return a.id - b.id;
+//       case "desc":
+//         return b.id - a.id;
+//     }
+//   });
+// }
+// console.log(sortById(data, "desc"));
+// console.log(sortById(data));
+///////////////////////////////////////////////

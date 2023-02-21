@@ -141,11 +141,11 @@
 // transferToString<string>("sdf");
 // transferToString(4);
 //////////////////////////////////////////////////////////
-const data = [
-  { id: 2, name: "Петя" },
-  { id: 1, name: "Вася" },
-  { id: 3, name: "Надя" },
-];
+// const data = [
+//   { id: 2, name: "Петя" },
+//   { id: 1, name: "Вася" },
+//   { id: 3, name: "Надя" },
+// ];
 // interface ISort {
 //   id: number;
 // }
@@ -186,3 +186,35 @@ const data = [
 // console.log(sortById(data, "desc"));
 // console.log(sortById(data));
 ///////////////////////////////////////////////
+// interface Data {
+//   group: number;
+//   name: string;
+// }
+// const dataInfo: Data[] = [
+//   { group: 1, name: "a" },
+//   { group: 1, name: "b" },
+//   { group: 2, name: "c" },
+// ];
+// interface IGroup<T> {
+//   [key: string]: T[];
+// }
+// type key = string | number | symbol;
+// function groupBy<T extends Record<key, any>>(
+//   arr: T[],
+//   key: keyof T
+// ): IGroup<T> {
+//   return arr.reduce<IGroup<T>>((map: IGroup<T>, item) => {
+//     const itemKey = item[key];
+//     let curEl = map[itemKey];
+//     if (Array.isArray(curEl)) {
+//       curEl.push(item);
+//     } else {
+//       curEl = [item];
+//     }
+//     map[itemKey] = curEl;
+//     return map;
+//   }, {});
+// }
+// const res = groupBy<Data>(dataInfo, "group");
+// console.log(res);
+/////////////////////////////////////////////////////////

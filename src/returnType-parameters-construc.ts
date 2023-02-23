@@ -1,6 +1,13 @@
 class User {
   constructor(public id: number, public name: string) {}
 }
-function getData(id: number) {
+function getData(id: number): User {
   return new User(id, "Erkin");
 }
+type RT = ReturnType<typeof getData>;
+type RT2 = ReturnType<() => void>;
+type RT3 = ReturnType<<T>() => T>;
+type RT4 = ReturnType<<T extends string>() => T>;
+type PT = Parameters<typeof getData>;
+type first = PT[0];
+type CP = ConstructorParameters<typeof User>;

@@ -5,8 +5,6 @@ class Task {
 class TaskList {
   private tasks: Task[] = [];
 
-  constructor() {}
-
   public sortByPriority() {
     this.tasks = this.tasks.sort((a, b) => {
       if (a.priority > b.priority) {
@@ -29,6 +27,9 @@ class TaskList {
   public count() {
     return this.tasks.length;
   }
+  public getIterator() {
+    return new PriorityTaskIterator(this);
+  }
 }
 
 interface IIterator<T> {
@@ -46,7 +47,7 @@ class PriorityTaskIterator implements IIterator<Task> {
   private taskList: TaskList;
 
   constructor(taskList: TaskList) {
-    this.taskList.sortByPriority();
+    taskList.sortByPriority();
     this.taskList = taskList;
   }
 
@@ -55,13 +56,28 @@ class PriorityTaskIterator implements IIterator<Task> {
   }
   next(): Task | undefined {
     this.position += 1;
-    return this.taskList.getTask()[this.position];
+    const result = this.taskList.getTask()[this.position];
+    // this.position -= 1;
+    return result;
   }
   prev(): Task | undefined {
     this.position -= 1;
-    return this.taskList.getTask()[this.position];
+    const result = this.taskList.getTask()[this.position];
+    // this.position += 1;
+    return result;
   }
   index(): number {
     return this.position;
   }
 }
+
+const taskList = new TaskList();
+taskList.addTask(new Task(8));
+taskList.addTask(new Task(1));
+taskList.addTask(new Task(3));
+const iterator = taskList.getIterator();
+console.log(iterator.current());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.prev());
+console.log(iterator.index());
